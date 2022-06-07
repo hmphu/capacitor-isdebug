@@ -5,7 +5,7 @@ Detect if app is run in debug or release mode
 ## Install
 
 ```bash
-npm install capacitor-isdebug
+npm install @guimapkx/capacitor-isdebug
 npx cap sync
 ```
 

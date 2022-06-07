@@ -1,6 +1,6 @@
 {
   "name": "@guimapkx/capacitor-isdebug",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "description": "Detect if app is run in debug or release mode",
   "main": "dist/plugin.cjs.js",
