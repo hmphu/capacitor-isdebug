@@ -11,30 +11,23 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 
 @CapacitorPlugin(name = "IsDebug")
 public class IsDebugPlugin extends Plugin {
-
     private static Context ctx;
 
     @PluginMethod
     public void getIsDebug(PluginCall call) {
         ctx = bridge.getContext();
-        Boolean value = false;
+        JSObject ret = new JSObject();
 
         try {
-            if ((ctx.getPackageManager().getPackageInfo(
-                    ctx.getPackageName(), 0).applicationInfo.flags &
-                    ApplicationInfo.FLAG_DEBUGGABLE) != 0) {
-                //Debug and development mode
-                value = true;
-            }
+            if ((ctx.getPackageManager().getPackageInfo(ctx.getPackageName(), 0).
+                    applicationInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0)
+                ret.put("value", true);
+            else
+                ret.put("value", false);
         } catch (PackageManager.NameNotFoundException e) {
-            JSObject ret = new JSObject();
             ret.put("value", null);
-            call.resolve(ret);
-            return;
         }
 
-        JSObject ret = new JSObject();
-        ret.put("value", value);
         call.resolve(ret);
     }
 }
